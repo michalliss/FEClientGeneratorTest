@@ -1,0 +1,27 @@
+﻿@page "/counter"
+@using Namespace
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @text</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private string text = "";
+
+    private async void IncrementCount()
+    {
+        var client = new ApiClient("http://localhost:5176/", new HttpClient { BaseAddress = new Uri("http://localhost:5176/") });
+
+        var response = await client.ClientGeneratorTestEndpointAsync(new ClientGeneratorTestRequest(), Guid.NewGuid());
+
+        if (response is not null)
+        {
+            text = response.VideoId.ToString();
+        }
+    }
+
+}
