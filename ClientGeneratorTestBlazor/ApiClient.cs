@@ -71,9 +71,8 @@ namespace Namespace
                 throw new System.ArgumentNullException("request");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/endpoint?");
-            urlBuilder_.Append(System.Uri.EscapeDataString("VideoId") + "=").Append(System.Uri.EscapeDataString(ConvertToString(videoId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            urlBuilder_.Length--;
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/endpoint/{VideoId}");
+            urlBuilder_.Replace("{VideoId}", System.Uri.EscapeDataString(ConvertToString(videoId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
             var disposeClient_ = false;

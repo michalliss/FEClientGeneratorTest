@@ -14,7 +14,7 @@ public class Endpoint : Endpoint<Request, Response>
 {
     public override void Configure()
     {
-        Get("/endpoint");
+        Get("/endpoint/{VideoId}");
         AllowAnonymous();
     }
 
